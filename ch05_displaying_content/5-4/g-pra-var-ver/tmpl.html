@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Go Web Programming</title>
+  </head>
+  <body>
+   {{/*参数*/}}
+  {{ if "v1"}}
+      v1 是一个参数
+  {{ end }}
+   <br/>
+
+   {{/*变量*/}}
+   {{ range $key,$value:=.}}
+    The key is {{ $key }}  and the value is {{ $value}}<br/>
+   {{ end }}
+
+    {{/*管道*/}}
+   {{ 12.3456 | printf "%.2f"}}
+    <br/>
+    {{ . }}
+  </body>
+</html>

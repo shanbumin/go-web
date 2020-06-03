@@ -1,0 +1,33 @@
+一、前端向服务器传递数据的常用编码方式:
+a.application/x-www-form-urlencoded (本质与URL编码方式是一样的)
+b.multipart/form-data  （本质是MIME报文）
+c.text/plain
+d.Base64
+...
+
+
+二、获取表单数据
+
+   前端通过选择的编码方式传递数据之后，我们不需要自己去解码进行分析，http包中提供了一套方法，足够我们用了。
+   使用Request结构的方法获取表单数据的一般步骤是：
+(1)调用ParseForm方法或者ParseMultipartForm方法，对请求进行语法分析。
+(2)根据步骤1调用的方法，访问相应的Form字段、PostForm字段或MultipartForm字段。
+
+
+1.一定要搞清楚Request结构的Form字段、PostForm字段、MultipartForm字段这三个字段的区别，某些场景下都是不可替代的。
+2.如果一个键同时拥有表单键值对和URL键值对，但是用户只想要获取表单键值对而不是URL键值对，那么可以访问Request结构的PostForm字段。
+3.Form还是PostForm字段只支持URL编码，所以当客户端采用Multipart编码的时候:
+  Form将不再返回任何表单值，而是只返回URL查询值，
+  PostForm将什么也不返回，即 map[]。
+  所以这个时候我们需要通过MultipartForm字段来获取Multipart编码的表单数据。
+4.为了取得multipart/form-data编码的表单数据，我们需要用到Request结构的ParseMultipartForm方法和MultipartForm字段，而不再使用ParseForm方法和Form字段，
+  不过ParseMultipartForm方法在需要时也会自行调用ParseForm方法。
+5.MultipartForm字段的值不再是一个映射，而是一个包含了两个映射的结构，
+  其中第一个映射的键为字符串，值为字符串组成的切片，
+  而第二个映射则是空的——这个映射之所以会为空，是因为它是用来记录用户上传的文件的。
+6.MultipartForm字段只支持Multipart编码。
+7.FormValue返回key为键查询r.Form字段得到结果[]string切片的第一个值。POST和PUT主体中的同名参数优先于URL查询字符串。
+  如果必要，本函数会隐式调用ParseMultipartForm和ParseForm。
+8.PostFormValue返回key为键查询r.PostForm字段得到结果[]string切片的第一个值。
+  如果必要，本函数会隐式调用ParseMultipartForm和ParseForm。
+9.FormValue与PostFormValue的好处仅仅就是不需要我们手动进行r.ParseForm()或者r.ParseMultipartForm(1024)，方法内部会智能的自行调用的。

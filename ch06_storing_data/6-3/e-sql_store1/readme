@@ -1,0 +1,16 @@
+一、数据准备
+   创建数据库 gwp以及表名为posts
+   create database  gwp;
+   drop table posts;
+
+  CREATE TABLE `posts` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `content` text,
+    `author` varchar(255) NOT NULL DEFAULT '',
+    PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+二、安装包
+   #go   get   "github.com/lib/pg"
+   go get  "github.com/go-sql-driver/mysql"

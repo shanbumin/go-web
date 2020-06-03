@@ -1,0 +1,4 @@
+net/http标准库的各个组成部分
+
+Client、Response、Header、Request和Cookie  对客户端进行支持。
+Server、ServeMux、Handler/HandleFunc、ResponseWriter、Header、Request和Cookie则对服务器进行支持。

@@ -1,0 +1,5 @@
+ Form字段存储的是来自URL以及HTML表单的URL编码数据
+ PostForm字段存储的是来自HTML表单的URL编码数据
+ MultipartForm字段存储的则是来自URL以及HTML表单的multipart编码数据
+
+注意:请求的url中的get参数默认都是URL编码的，表单中的参数是可以设置的。上述存储的前提是先按照正确的解码方式解析客户端传递的数据额

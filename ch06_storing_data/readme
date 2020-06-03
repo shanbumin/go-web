@@ -1,0 +1,138 @@
+6.1 内存存储
+6.2 文件存储
+    6.2.1  读取和写入CSV文件
+    6.2.2  gob包
+6.3 Go与SQL
+    6.3.1  设置数据库
+    6.3.2  连接数据库
+    6.3.3  创建帖子
+
+
+
+
+
+
+6.3.4  获取帖子
+
+func GetPost(id int) (post Post, err error) {
+   post = Post{}
+   err = Db.QueryRow("select id, content, author from posts where id = $1", id).Scan(&post.Id, &post.Content, &post.Author)
+   return
+}
+
+
+
+
+
+6.3.5  更新帖子
+
+
+func (post *Post) Update() (err error) {
+   _, err = Db.Exec("update posts set content = $2, author = $3 where id = $1", post.Id, post.Content, post.Author)
+   return
+}
+
+
+
+6.3.6  删除帖子
+
+func (post *Post) Delete() (err error) {
+   _, err = Db.Exec("delete from posts where id = $1", post.Id)
+   return
+}
+
+
+
+
+6.3.7  一次获取多篇帖子
+
+
+
+func Posts(limit int) (posts []Post, err error) {
+   rows, err := Db.Query("select id, content, author from posts limit $1", limit)
+   if err != nil {
+      return
+   }
+   for rows.Next() {
+      post := Post{}
+      err = rows.Scan(&post.Id, &post.Content, &post.Author)
+      if err != nil {
+         return
+      }
+      posts = append(posts, post)
+   }
+   rows.Close()
+   return
+}
+
+
+
+
+
+
+
+6.4 Go与SQL的关系
+6.4.1  设置数据库
+
+cd /Users/sansheng/golang/gwp/src/Chapter_6_Storing_Data/sql_store2
+psql   -U  gwp  -f  setup.sql   -d   gwp
+
+
+
+
+6.4.2  一对多关系
+
+
+/Users/sansheng/golang/gwp/src/Chapter_6_Storing_Data/sql_store2/store.go
+
+
+6.5 Go与关系映射器
+
+https://segmentfault.com/a/1190000015606291?utm_source=tag-newest    [各主流orm介绍]
+
+https://gitee.com/wangsongyan/wblog    [开源博客  gin+gorm]
+
+
+6.5.1  Sqlx
+
+go  get   "github.com/jmoiron/sqlx"
+
+https://github.com/jmoiron/sqlx
+
+/Users/sansheng/golang/gwp/src/Chapter_6_Storing_Data/sqlx_store/store.go
+
+
+6.5.2  Gorm
+
+
+/Users/sansheng/golang/gwp/src/Chapter_6_Storing_Data/gorm_store/store.go
+
+go   get  github.com/jinzhu/gorm
+
+https://github.com/jinzhu/gorm
+
+
+6.5.3 golang-xorm
+
+go  get  github.com/go-xorm/xorm
+
+
+
+
+
+
+
+
+
+https://www.jianshu.com/p/015aca3e11ae
+
+
+程序可以定义为算法+数据。算法是我们的代码逻辑，代码逻辑处理数据。数据的存在形式并不单一，可以存在数据库，文件。
+无论存在什么地方，处理数据的时候都需要把数据读入内存。如果直接存在内存中，不就可以可以直接读了么？的确，数据可以存在内存中。
+涉及数据存储的的过程称之为持久化。下面golang中的数据持久化做简单的介绍。主要包括内存存储，文件存储和数据库存储。
+
+
+
+
+
+

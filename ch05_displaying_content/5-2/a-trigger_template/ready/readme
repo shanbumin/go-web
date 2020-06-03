@@ -1,0 +1,28 @@
+对模板进行语法分析：
+
+①情形一：
+t, _ := template.ParseFiles("../tmpl.html")
+t.Execute(w, "Hello World001!")
+
+②情形二：
+t:=template.New("tmpl.html")
+t,_=t.ParseFiles("../tmpl.html")
+t.Execute(w, "Hello World002!")
+
+
+③情形三：
+t, _ := template.ParseGlob("../*.html")
+t.Execute(w, "Hello World003!")
+
+④情形四：
+tmpl=` ...`
+t:=template.New("tmpl.html")
+t,_=t.Parse(tmpl)
+t.Execute(w, "Hello World004!")
+
+
+⑤情形五：
+t:= template.Must(template.ParseFiles("../tmpl.html"))
+t.Execute(w, "Hello World005!")
+
+

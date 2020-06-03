@@ -1,0 +1,31 @@
+如何使用HTTP2构建web服务器？
+gopm get  -g  -v  golang.org/x/net/http2
+go get "golang.org/x/net/http2"
+
+
+1.安装依赖包
+  go get "golang.org/x/net/http2"
+  go get golang.org/x 包失败解决方法：https://blog.csdn.net/AlexWoo0501/article/details/73409917
+
+mkdir -p $GOPATH/src/golang.org/x
+cd $GOPATH/src/golang.org/x
+git clone https://github.com/golang/net.git
+git clone https://github.com/golang/text.git  [需要这个依赖包]
+
+2.cURL工具的使用
+
+
+curl  -I     https://www.baidu.com/?tn=78040160_36_pg
+curl  -I  --http2  --insecure    https://www.baidu.com/?tn=78040160_36_pg
+
+
+
+curl  -I  --http2  --insecure   https://127.0.0.1:8080/
+问题来了：如何启用curl命令HTTP2支持
+
+
+
+
+
+
+

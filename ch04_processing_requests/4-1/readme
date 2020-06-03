@@ -1,0 +1,5 @@
+type Request struct {
+
+}
+Request类型代表一个服务端接受到的或者客户端发送出去的HTTP请求。
+Request各字段的意义和用途在服务端和客户端是不同的。除了字段本身上方文档，还可参见Request.Write方法和RoundTripper接口的文档。
