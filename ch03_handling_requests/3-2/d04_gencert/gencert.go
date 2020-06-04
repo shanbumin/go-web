@@ -14,6 +14,8 @@ import (
 
 //生成SSL证书以及服务器私钥
 
+//ssl证书是为了公证服务器公钥的
+
 func main() {
 	//生成证书序列号
 	max := new(big.Int).Lsh(big.NewInt(1), 128)
