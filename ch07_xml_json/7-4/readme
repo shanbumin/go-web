@@ -1,0 +1,34 @@
+表示、发送和接收结构化数据
+创建和分析xml是一种基本功
+encoding库中的XML子包: encoding/xml
+
+
+
+①xml转结构体、map
+
+方式一：xml.Unmarshal(xmlData, &post)
+
+方式二:decoder
+decoder := xml.NewDecoder(xmlFile)
+for {
+    t, err := decoder.Token()
+    if err == io.EOF {//表示数据流已经读取完毕，无token了
+        break
+    }
+    if err != nil {
+        fmt.Println("Error decoding XML into tokens:", err)
+        return
+    }
+           fmt.Println("当前的元素名称为: ",se.Name.Local)
+}
+
+
+②结构体/map转 xml (建议直接字符串拼接即可)
+
+方式一：output, err := xml.MarshalIndent(&post, "", "\t\t")
+方式二：encoder
+
+    encoder := xml.NewEncoder(xmlFile)
+	encoder.Indent("", "\t")
+	err = encoder.Encode(&post)
+
