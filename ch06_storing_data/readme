@@ -10,47 +10,13 @@
     6.3.5  更新帖子
     6.3.6  删除帖子
     6.3.7  一次获取多篇帖子
-
-
 6.4 Go与SQL的关系
     6.4.1  设置数据库
     6.4.2  一对多关系
-
-
-
-
-
-
-
 6.5 Go与关系映射器
-
-https://segmentfault.com/a/1190000015606291?utm_source=tag-newest    [各主流orm介绍]
-
-https://gitee.com/wangsongyan/wblog    [开源博客  gin+gorm]
-
-
-6.5.1  Sqlx
-
-go  get   "github.com/jmoiron/sqlx"
-
-https://github.com/jmoiron/sqlx
-
-/Users/sansheng/golang/gwp/src/Chapter_6_Storing_Data/sqlx_store/store.go
-
-
-6.5.2  Gorm
-
-
-/Users/sansheng/golang/gwp/src/Chapter_6_Storing_Data/gorm_store/store.go
-
-go   get  github.com/jinzhu/gorm
-
-https://github.com/jinzhu/gorm
-
-
-6.5.3 golang-xorm
-
-go  get  github.com/go-xorm/xorm
+    6.5.1  Sqlx
+    6.5.2  Gorm
+    6.5.3  Xorm
 
 
 
@@ -59,13 +25,6 @@ go  get  github.com/go-xorm/xorm
 
 
 
-
-https://www.jianshu.com/p/015aca3e11ae
-
-
-程序可以定义为算法+数据。算法是我们的代码逻辑，代码逻辑处理数据。数据的存在形式并不单一，可以存在数据库，文件。
-无论存在什么地方，处理数据的时候都需要把数据读入内存。如果直接存在内存中，不就可以可以直接读了么？的确，数据可以存在内存中。
-涉及数据存储的的过程称之为持久化。下面golang中的数据持久化做简单的介绍。主要包括内存存储，文件存储和数据库存储。
 
 
 

@@ -57,10 +57,36 @@ func GetPost(id int) (post Post, err error) {
 }
 
 
+func GetPost2(id int) (post Post, err error) {
+	post = Post{}
+	post.Comments = []Comment{}
+
+
+	rows, err := Db.Query("select c.id,c.content,c.author from posts as p join comments as c  on p.id=c.post_id  where p.id = ?", id)
+	if err != nil {
+		return
+	}
+	for rows.Next() {
+		comment := Comment{}
+		err = rows.Scan(&comment.Id, &comment.Content, &comment.Author)
+		if err != nil {
+			return
+		}
+		post.Comments = append(post.Comments, comment)
+	}
+	rows.Close()
+	return
+}
+
+
+
 
 
 func main() {
-	readPost, _ := GetPost(1)
+	readPost, err := GetPost2(1)
+	if err !=nil{
+		fmt.Println(err)
+	}
 	fmt.Printf("%+v\r\n",readPost)
 	fmt.Printf("%+v\r\n",readPost.Comments)
 

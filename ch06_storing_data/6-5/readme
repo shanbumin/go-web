@@ -1,0 +1,15 @@
+https://segmentfault.com/a/1190000015606291?utm_source=tag-newest    [各主流orm介绍]
+https://gitee.com/wangsongyan/wblog    [开源博客  gin+gorm]
+
+
+
+#sqlx
+go  get   "github.com/jmoiron/sqlx"
+https://github.com/jmoiron/sqlx
+
+#gorm
+go   get  github.com/jinzhu/gorm
+https://github.com/jinzhu/gorm
+
+#xorm
+go  get  github.com/go-xorm/xorm
