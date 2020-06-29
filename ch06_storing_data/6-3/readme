@@ -12,5 +12,5 @@
 
 
 二、安装包
-   #go   get   "github.com/lib/pg"
+   #go   get   "github.com/lib/pg"  #postgressql
    go get  "github.com/go-sql-driver/mysql"
