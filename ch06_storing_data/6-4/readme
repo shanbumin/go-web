@@ -1,0 +1,32 @@
+一、数据准备
+   创建数据库 gwp以及表名为posts
+   create database  gwp;
+   drop table posts;
+   drop table comments;
+
+  CREATE TABLE `posts` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `content` text,
+    `author` varchar(255) NOT NULL DEFAULT '',
+    PRIMARY KEY (`id`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+   create table comments (
+      id     int(10) unsigned NOT NULL AUTO_INCREMENT,
+      content text,
+      author  varchar(255) NOT NULL DEFAULT '',
+      post_id int(10) unsigned NOT NULL,
+      PRIMARY KEY (`id`)
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+
+
+insert into posts (id,content,author) values(1,"test","sam");
+---------
+insert into comments(content,author,post_id)values
+("c1","sam",1),
+("c2","sam",1),
+("c3","sam",1);

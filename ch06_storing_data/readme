@@ -12,25 +12,14 @@
     6.3.7  一次获取多篇帖子
 
 
-
-
-
-
-
-
 6.4 Go与SQL的关系
-6.4.1  设置数据库
-
-cd /Users/sansheng/golang/gwp/src/Chapter_6_Storing_Data/sql_store2
-psql   -U  gwp  -f  setup.sql   -d   gwp
+    6.4.1  设置数据库
+    6.4.2  一对多关系
 
 
 
 
-6.4.2  一对多关系
 
-
-/Users/sansheng/golang/gwp/src/Chapter_6_Storing_Data/sql_store2/store.go
 
 
 6.5 Go与关系映射器
