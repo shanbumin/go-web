@@ -7,5 +7,6 @@ require (
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/lib/pq v1.3.0 // indirect
 	golang.org/x/net v0.0.0-20200202094626-16171245cfb2
+	xorm.io/builder v0.3.7
 	xorm.io/xorm v1.0.2
 )
