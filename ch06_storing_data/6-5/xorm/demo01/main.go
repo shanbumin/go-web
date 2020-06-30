@@ -30,6 +30,19 @@ type User struct {
 	Updated time.Time `xorm:"updated"`
 }
 
+/*
+CREATE TABLE `detail` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `IDX_detail_user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+ */
+type Detail struct {
+	Id int64
+	UserId int64 `xorm:"index"`
+}
+
 
 func main() {
 
@@ -48,8 +61,10 @@ func main() {
 		log.Fatal(err)
 	}
 
-
-
+	err=engine.Sync2(new(Detail))
+	if err !=nil{
+		log.Fatal(err)
+	}
 
 
 }
