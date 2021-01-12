@@ -5,6 +5,7 @@
 
 2.处理器
   a.什么样的类型才能称为处理器
+
 3.处理器函数
   a.什么样的函数才能称为处理器函数
 
@@ -20,34 +21,29 @@
     http.HandleFunc("/sam",sam)
 
 
-注意：区分如下这两个函数的区别
+注意：区分如下这两个函数的区别:handler看成处理器,handle看成动词绑定
 http.HandlerFunc()  ===>将处理器函数转为处理器
 http.HandleFunc()   ===>将处理器函数绑定到多路复用器上
 ----------------------------------------------------
 总结
-1.ServeMux结构体
-   该结构体实现了Handler接口，但也实现了多路复用器接口，即它既是一个处理器同时也是一个多路复用器
+1.多路复用器ServeMux结构体:该结构体实现了Handler接口，但也实现了多路复用器接口，即它既是一个处理器同时也是一个多路复用器
 
 
-2.Handler接口
+2.处理器Handler接口
 
 type Handler interface {
     ServeHTTP(ResponseWriter, *Request)
 }
 
-3.http.Handle函数
-
- 将自定义的几个处理器绑定到DefaultServeMux , http.Handle函数底层调用的就是DefaultServeMux的方法Handle
+3.多路复用器绑定处理器函数http.Handle
+  将自定义的几个处理器绑定到DefaultServeMux , http.Handle函数底层调用的就是DefaultServeMux的方法Handle
 http.Handle("/sam", &samHandle)
 
-4.http.HandleFunc函数
-
-//绑定自定义的处理器函数到默认的多路复用器上
+4.多路复用器绑定处理器函数http.HandleFunc
+  绑定自定义的处理器函数到默认的多路复用器上
 http.HandleFunc("/hello", hello)
 
-5.http.HandlerFunc函数类型
+5.处理器函数转处理器函数http.HandlerFunc
 
-samHandle:=http.HandlerFunc(sam) //不是调用http.HandlerFunc方法，而是将sam转换成http.HandlerFunc类型
+samHandle:=http.HandlerFunc(sam)
 http.Handle("/sam",&samHandle)
-
-http.HandleFunc会将sam函数转换成一个Handler,并将它与DefaultServeMux进行绑定，以此来简化创建并绑定Handler的工作。换句话说，处理器函数只不过是创建处理器的一种便利的方法而已。

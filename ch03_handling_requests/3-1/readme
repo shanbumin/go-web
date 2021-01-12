@@ -1,4 +1,11 @@
 net/http标准库的各个组成部分
 
 Client、Response、Header、Request和Cookie  对客户端进行支持。
-Server、ServeMux、Handler/HandleFunc、ResponseWriter、Header、Request和Cookie则对服务器进行支持。
+Server、ServeMux、Handler/HandleFunc、ResponseWriter、Header、Request和Cookie   则对服务器进行支持。
+
+
+
+Handler:处理器
+HandleFunc:处理器函数，处理器函数只是简便实用处理器的快捷方式而已。
+ServeMux: 是HTTP请求的多路转接器。它会将每一个接收的请求的URL与一个注册模式的列表进行匹配，并调用和URL最匹配的模式的处理器。 multiplexer   ['mʌltipleksə]  简称  mux 多路复用器
+DefaultServeMux:既是ServeMux结构的实例，也是Handler结构的实例。即它既是处理器也是多路复用器

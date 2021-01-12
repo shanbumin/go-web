@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 )
-
 //======================自定义一个处理器  MyHandler=================================
 //任意类型只要实现了Handler接口，即只需要实现ServeHTTP方法,且参数形式如下，则它就是一个处理器，即MyHandler就是一个处理器
 type MyHandler struct{}

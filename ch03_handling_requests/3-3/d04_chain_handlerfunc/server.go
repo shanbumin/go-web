@@ -7,8 +7,6 @@ import (
 	"runtime"
 )
 //串联两个处理器函数
-//hello是一个处理器函数  hello是http.HandlerFunc类型的函数
-//即函数定义形式func(ResponseWriter, *Request)即为http.HandlerFunc类型的函数
 func hello(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello!")
 }
