@@ -1,0 +1,39 @@
+    注意：1.请先把7.6搭建的web服务的增删改查跑一边，再看这章会更好一些。
+               2. dial tcp 127.0.0.1:5432: getsockopt: connection refused   ====>报这种错的时候不要慌，一看就是拨号被拒绝了，这里就是连接Postgresql
+               3.httptest包提供了模拟一个Web服务器所需的设施，用户可以利用net/http包中的客户端函数向这个服务器发送HTTP请求，然后获取模拟服务器返回的HTTP响应。
+
+/Users/sansheng/golang/gwp/src/Chapter_8_Testing_Web_Applications/httptest_1/server_test.go
+/Users/sansheng/golang/gwp/src/Chapter_8_Testing_Web_Applications/httptest_2/server_test.go
+
+func TestHandleGet(t *testing.T) {
+   //创建一个用于运行测试的多路复用器
+   mux := http.NewServeMux()
+  //绑定想要测试的处理器*
+  mux.HandleFunc("/post/", handleRequest)
+   //****************************************************
+   writer := httptest.NewRecorder() //创建记录器，用于获取服务器返回的HTTP响应
+   request, _ := http.NewRequest("GET", "/post/1", nil)//为被测试的处理器创建相应的请求
+   mux.ServeHTTP(writer, request)//把创建出的记录器以及HTTP请求传递给多路复用器
+   //*****************************************************
+   if writer.Code != 200 {
+      t.Errorf("Response code is %v", writer.Code)
+   }
+   var post Post
+   json.Unmarshal(writer.Body.Bytes(), &post)
+   if post.Id != 1 {
+      t.Errorf("Cannot retrieve JSON post")
+   }
+}
+
+   因为每个测试用例都会独立运行并启动各自独有的用于测试的Web服务器，所以程序需要创建一个多路复用器，并将handleRequest处理器与其进行绑定。
+   除此之外，为了获取服务器返回的HTTP响应，程序使用httptest.NewRecorder函数创建了一个ResponseRecorder结构，这个结构可以把响应存储起来以便进行后续的检查。
+   与此同时，程序还需要调用http.NewRequest函数，并将请求使用的HTTP方法、被请求的URL以及可选的HTTP请求主体传递给该函数，从而创建一个HTTP请求。
+   程序在创建出相应的记录器以及HTTP请求之后，就会使用ServeHTTP把它们传递给多路复用器。
+   传递之后，接下来就是多路复用器正常匹配的流转，handleRequest在接收到请求之后，就会把请求转发给handleGet函数，然后由handleGet函数对请求进行处理，并最终返回一个HTTP响应。
+    跟一般服务器不同的是，模拟服务器的多路复用器不会把处理器返回的响应发送至浏览器，而是会把响应推入响应记录器里面，从而使测试程序可以在之后对响应的结果进行验证。
+
+
+
+go  test -v
+
+

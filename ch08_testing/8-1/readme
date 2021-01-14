@@ -1,0 +1,4 @@
+testing包
+net/http/httptest包 ====>是基于testing库实现的用于测试Web应用的库。
+
+
