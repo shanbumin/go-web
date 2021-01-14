@@ -1,0 +1,2 @@
+go test -v
+go  test  -run  x   -bench   .   -cpu   1 ====>只使用一个CPU
