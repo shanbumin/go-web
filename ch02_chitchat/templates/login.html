@@ -1,0 +1,19 @@
+{{ define "content" }}
+
+<form class="form-signin center" role="form" action="/authenticate" method="post">
+  <h2 class="form-signin-heading">
+    <i class="fa fa-comments-o">
+      ChitChat
+    </i>
+  </h2>
+  <!--邮箱-->
+  <input type="email" name="email" class="form-control" autocomplete="off" placeholder="Email address" required autofocus>
+  <!--密码-->
+  <input type="password" name="password" class="form-control" autocomplete="off" placeholder="Password" required>
+  <br/>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+  <br/>
+  <a class="lead pull-right" href="/signup">注册</a>
+</form>
+
+{{ end }}
