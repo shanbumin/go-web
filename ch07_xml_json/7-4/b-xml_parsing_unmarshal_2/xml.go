@@ -7,6 +7,25 @@ import (
 	"os"
 )
 
+/*
+
+<?xml version="1.0" encoding="utf-8"?>
+<post id="1">
+  <content>Hello World!</content>
+  <author id="2">Sau Sheong</author>
+  <comments>
+    <comment id="1">
+      <content>Have a great day!</content>
+      <author>Adam</author>
+    </comment>
+    <comment id="2">
+      <content>How are you today?</content>
+      <author>Betty</author>
+    </comment>
+  </comments>
+</post>
+
+ */
 type Post struct {
 	XMLName  xml.Name  `xml:"post"`
 	Id       string    `xml:"id,attr"`

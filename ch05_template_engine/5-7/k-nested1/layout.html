@@ -1,0 +1,23 @@
+{{/*定义第一个模板  模板名为layout*/}}
+{{ define "layout" }}
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Go Web Programming</title>
+  </head>
+  <body>
+    {{/*在模板一中使用模板二*/}}
+    {{ template "content" }}
+  </body>
+</html>
+
+{{ end }}
+
+{{/*定义第二个模板  模板名为content */}}
+
+{{ define "content" }}
+
+Hello World!
+
+{{ end }}

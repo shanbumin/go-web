@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Go Web Programming</title>
+  </head>
+  <body>
+    <ul>
+    {{ range . }}
+      <li>{{ . }}</li>
+    {{ else }}
+            {{/*只有为nil的时候才会进入这个逻辑*/}}
+       <li>Nothing  to show</li>
+    {{ end}}
+    </ul>
+  </body>
+</html>

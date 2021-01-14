@@ -1,0 +1,3 @@
+ 最后，在面对JSON数据时，我们可以根据输入决定使用Decoder还是Unmarshal:
+ 如果JSON数据来源于io.Reader流，如http.Request的Body，那么使用Decoder更好；
+ 如果JSON数据来源于字符串或者内存的某个地方，那么使用Unmarshal更好。

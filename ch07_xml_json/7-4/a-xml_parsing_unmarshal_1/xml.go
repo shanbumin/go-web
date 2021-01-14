@@ -54,13 +54,16 @@ func main() {
 	//第三步:将xml数据解封到结构里面
 	var post Post
 	xml.Unmarshal(xmlData, &post)
-	//fmt.Println(post)
-	fmt.Println("XMLName.Space",post.XMLName.Space)
-	fmt.Println("XMLName.Local",post.XMLName.Local)
-	fmt.Println("Id",post.Id)
-	fmt.Println("Content",post.Content)
-	fmt.Println("Author",post.Author)
-	fmt.Println("Author.Id",post.Author.Id)
-	fmt.Println("Author.Name",post.Author.Name)
-	fmt.Println("Xml",post.Xml)
+	fmt.Println(post)
+	//fmt.Println("XMLName.Space",post.XMLName.Space)
+	//fmt.Println("XMLName.Local",post.XMLName.Local)
+	//fmt.Println("Id",post.Id)
+	//fmt.Println("Content",post.Content)
+	//fmt.Println("Author",post.Author)
+	//fmt.Println("Author.Id",post.Author.Id)
+	//fmt.Println("Author.Name",post.Author.Name)
+	//fmt.Println("Xml",post.Xml)
+
+
+
 }

@@ -40,6 +40,7 @@ func main() {
 	//第三步：每迭代一次解码器中的所有XML数据
 	for {
 		//每进行一次迭代，就从解码器里面获取一个token
+		//token是针对<>进行一个个元素迭代的额
 		t, err := decoder.Token()
 		if err == io.EOF {
 			break
@@ -50,7 +51,7 @@ func main() {
 		}
         //检查token的类型
 		switch se := t.(type) {
-		case xml.StartElement:
+		case xml.StartElement: //开始标签
 			fmt.Println(se.Name.Local)
 			if se.Name.Local == "comment" {
 				var comment Comment
